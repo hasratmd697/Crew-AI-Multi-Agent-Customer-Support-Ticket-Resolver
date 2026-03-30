@@ -1,0 +1,27 @@
+{
+  "test_case": "tc02_conflict.json",
+  "duration_seconds": 168.25,
+  "input": {
+    "ticket": {
+      "text": "I ordered this tablet from 'TechBros' on your site. The return policy on the product page said 30 days, but they are now refusing my return saying it's 14 days for electronics. Which one is it? I want my money back.",
+      "customer_id": "CUST-1002",
+      "channel": "chat"
+    },
+    "order_context": {
+      "order_id": "ORD-654321",
+      "order_date": "2025-03-01",
+      "delivery_date": "2025-03-10",
+      "expected_delivery_date": "2025-03-08",
+      "item_category": "electronics",
+      "item_name": "10-inch Android Tablet",
+      "item_price": 250.0,
+      "fulfillment_type": "marketplace-seller",
+      "seller_name": "TechBros",
+      "shipping_region": "US-TX",
+      "order_status": "delivered",
+      "payment_method": "paypal",
+      "is_final_sale": false
+    }
+  },
+  "raw_agent_output": "{\n    \"passed\": true,\n\"issues\": [],\n    \"action\": \"approve\"\n}"
+}

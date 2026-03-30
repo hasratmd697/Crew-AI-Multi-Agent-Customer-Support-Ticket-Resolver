@@ -1,0 +1,21 @@
+{
+  "ticket": {
+    "text": "The box I got was the wrong color. What are you going to do about it?",
+    "customer_id": "CUST-1003",
+    "channel": "web_form"
+  },
+  "order_context": {
+    "order_id": "ORD-999999",
+    "order_date": "2025-03-20",
+    "delivery_date": "2025-03-24",
+    "expected_delivery_date": "2025-03-24",
+    "item_category": "unknown",
+    "item_name": "Storage Box Set",
+    "item_price": 15.99,
+    "fulfillment_type": "first-party",
+    "shipping_region": "US-WA",
+    "order_status": "delivered",
+    "payment_method": "credit_card",
+    "is_final_sale": true
+  }
+}

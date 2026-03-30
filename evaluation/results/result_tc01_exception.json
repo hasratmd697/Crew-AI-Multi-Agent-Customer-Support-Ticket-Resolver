@@ -1,0 +1,26 @@
+{
+  "test_case": "tc01_exception.json",
+  "duration_seconds": 376.71,
+  "input": {
+    "ticket": {
+      "text": "My package arrived 5 days late! What's worse, the gourmet chocolates I ordered inside are completely melted and ruined. I want a full refund immediately.",
+      "customer_id": "CUST-1001",
+      "channel": "email"
+    },
+    "order_context": {
+      "order_id": "ORD-123456",
+      "order_date": "2025-03-10",
+      "delivery_date": "2025-03-20",
+      "expected_delivery_date": "2025-03-15",
+      "item_category": "perishable",
+      "item_name": "Artisan Chocolates box",
+      "item_price": 45.0,
+      "fulfillment_type": "first-party",
+      "shipping_region": "US-NY",
+      "order_status": "delivered",
+      "payment_method": "credit_card",
+      "is_final_sale": false
+    }
+  },
+  "raw_agent_output": "{\n    \"passed\": true,\n    \"issues\": [],\n    \"action\": \"approve\"\n}"
+}
