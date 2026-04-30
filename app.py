@@ -17,17 +17,19 @@ CSS = """
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 :root {
-  --pm-bg: #f5f1eb;
-  --pm-panel: #fbf9f5;
-  --pm-panel-2: #f1ece4;
-  --pm-border: #d5cec3;
-  --pm-border-strong: #b7aea1;
-  --pm-text: #1d2328;
-  --pm-text-muted: #556069;
-  --pm-accent: #1f6262;
-  --pm-warning: #8a5a17;
-  --pm-danger: #8b3431;
-  --pm-success: #24563b;
+  --pm-bg: #f4f6f5;
+  --pm-panel: #ffffff;
+  --pm-panel-2: #eef3f1;
+  --pm-panel-3: #f8faf9;
+  --pm-border: #cfd8d6;
+  --pm-border-strong: #9ba9a7;
+  --pm-text: #15211f;
+  --pm-text-muted: #53635f;
+  --pm-accent: #0f6b63;
+  --pm-accent-hover: #0b5750;
+  --pm-warning: #805400;
+  --pm-danger: #9d312b;
+  --pm-success: #246447;
 }
 
 body, .gradio-container {
@@ -37,7 +39,35 @@ body, .gradio-container {
 }
 
 .gradio-container {
-  max-width: 1400px !important;
+  max-width: 1520px !important;
+  padding: 20px 24px 28px !important;
+  --body-background-fill: var(--pm-bg);
+  --body-text-color: var(--pm-text);
+  --block-background-fill: var(--pm-panel);
+  --block-border-color: var(--pm-border);
+  --block-label-text-color: var(--pm-text);
+  --input-background-fill: var(--pm-panel);
+  --input-border-color: var(--pm-border);
+  --input-placeholder-color: #788783;
+  --button-primary-background-fill: var(--pm-accent);
+  --button-primary-background-fill-hover: var(--pm-accent-hover);
+  --button-primary-text-color: #ffffff;
+  --button-secondary-background-fill: var(--pm-panel);
+  --button-secondary-text-color: var(--pm-text);
+  --border-color-primary: var(--pm-border);
+  --link-text-color: var(--pm-accent);
+}
+
+.gradio-container,
+.gradio-container p,
+.gradio-container label,
+.gradio-container span,
+.gradio-container div,
+.gradio-container button,
+.gradio-container input,
+.gradio-container textarea,
+.gradio-container select {
+  color: var(--pm-text);
 }
 
 .app-header,
@@ -49,18 +79,20 @@ body, .gradio-container {
 .notice {
   border: 1px solid var(--pm-border);
   background: var(--pm-panel);
+  color: var(--pm-text);
 }
 
 .app-header {
-  padding: 18px 20px;
-  margin-bottom: 16px;
+  padding: 22px 24px;
+  margin-bottom: 18px;
+  border-top: 4px solid var(--pm-accent);
 }
 
 .eyebrow {
   font-size: 12px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   text-transform: uppercase;
-  color: var(--pm-text-muted);
+  color: var(--pm-text-muted) !important;
   margin-bottom: 8px;
 }
 
@@ -69,11 +101,12 @@ body, .gradio-container {
   font-size: 32px;
   line-height: 1.1;
   font-weight: 700;
+  color: var(--pm-text) !important;
 }
 
 .app-subtitle {
   margin: 10px 0 0;
-  color: var(--pm-text-muted);
+  color: var(--pm-text-muted) !important;
   font-size: 15px;
   max-width: 920px;
 }
@@ -92,29 +125,31 @@ body, .gradio-container {
   align-items: center;
   padding: 5px 10px;
   border: 1px solid var(--pm-border);
-  background: #f1ece4;
+  background: var(--pm-panel-2);
+  color: var(--pm-text);
   font-size: 12px;
   font-weight: 600;
 }
 
 .panel {
-  padding: 16px;
+  padding: 20px;
 }
 
 .panel-heading {
   margin: 0 0 12px;
   font-size: 18px;
   font-weight: 600;
+  color: var(--pm-text);
 }
 
 .section-note,
 .status-label,
 .text-title,
 .evidence-title {
-  color: var(--pm-text-muted);
   font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
+  color: var(--pm-text-muted) !important;
 }
 
 .status-strip {
@@ -135,6 +170,7 @@ body, .gradio-container {
   font-size: 18px;
   font-weight: 700;
   margin-top: 8px;
+  color: var(--pm-text) !important;
 }
 
 .status-subvalue,
@@ -146,6 +182,7 @@ body, .gradio-container {
   line-height: 1.6;
   white-space: pre-wrap;
   font-size: 14px;
+  color: var(--pm-text) !important;
 }
 
 .decision-grid {
@@ -157,6 +194,7 @@ body, .gradio-container {
 .metric-value {
   font-size: 24px;
   font-weight: 700;
+  color: var(--pm-text);
 }
 
 .notes-list,
@@ -182,16 +220,101 @@ body, .gradio-container {
   font-family: 'IBM Plex Mono', monospace !important;
 }
 
-.primary-button {
+.gradio-container .block,
+.gradio-container .form,
+.gradio-container .wrap,
+.gradio-container .contain,
+.gradio-container .prose,
+.gradio-container .tabs,
+.gradio-container .tabitem {
+  background: transparent !important;
+  color: var(--pm-text) !important;
+}
+
+.gradio-container .block {
+  border-color: var(--pm-border) !important;
+}
+
+.gradio-container input,
+.gradio-container textarea,
+.gradio-container select,
+.gradio-container [data-testid="textbox"],
+.gradio-container [data-testid="number-input"] {
+  background: var(--pm-panel) !important;
+  color: var(--pm-text) !important;
+  border-color: var(--pm-border) !important;
+  box-shadow: none !important;
+}
+
+.gradio-container input::placeholder,
+.gradio-container textarea::placeholder {
+  color: #7a8884 !important;
+}
+
+.gradio-container label,
+.gradio-container .label-wrap,
+.gradio-container .block-title,
+.gradio-container .block-label {
+  color: var(--pm-text) !important;
+  background: transparent !important;
+}
+
+.gradio-container .input-container,
+.gradio-container .select-wrap,
+.gradio-container .checkbox {
+  background: var(--pm-panel) !important;
+  color: var(--pm-text) !important;
+  border-color: var(--pm-border) !important;
+}
+
+.gradio-container .radio,
+.gradio-container .checkbox,
+.gradio-container .wrap.svelte-1cl284s {
+  color: var(--pm-text) !important;
+}
+
+.gradio-container .tab-nav {
+  border-bottom: 1px solid var(--pm-border) !important;
+}
+
+.gradio-container .tab-nav button {
+  color: var(--pm-text-muted) !important;
+  background: transparent !important;
+  border-bottom: 2px solid transparent !important;
+  font-weight: 600 !important;
+}
+
+.gradio-container .tab-nav button.selected,
+.gradio-container .tab-nav button[aria-selected="true"] {
+  color: var(--pm-accent) !important;
+  border-bottom-color: var(--pm-accent) !important;
+}
+
+.gradio-container details,
+.gradio-container summary {
+  background: var(--pm-panel) !important;
+  color: var(--pm-text) !important;
+  border-color: var(--pm-border) !important;
+}
+
+.gradio-container summary {
+  font-weight: 600 !important;
+}
+
+.gradio-container .primary-button,
+.gradio-container .primary-button * {
   background: var(--pm-accent) !important;
   color: #ffffff !important;
   border: 1px solid var(--pm-accent) !important;
+  font-weight: 700 !important;
 }
 
-.secondary-button {
+.gradio-container .secondary-button,
+.gradio-container .secondary-button * {
   background: var(--pm-panel) !important;
   color: var(--pm-text) !important;
   border: 1px solid var(--pm-border-strong) !important;
+  font-weight: 700 !important;
 }
 
 .notice.error {
@@ -210,29 +333,40 @@ body, .gradio-container {
 }
 
 .success-text {
-  color: var(--pm-success);
+  color: var(--pm-success) !important;
 }
 
 .warning-text {
-  color: var(--pm-warning);
+  color: var(--pm-warning) !important;
 }
 
 .danger-text {
-  color: var(--pm-danger);
+  color: var(--pm-danger) !important;
 }
 
 .gradio-container .gr-button,
 .gradio-container .tab-nav button,
 .gradio-container .gr-box,
 .gradio-container .block {
-  border-radius: 0 !important;
+  border-radius: 6px !important;
   box-shadow: none !important;
+}
+
+#intake-panel,
+#result-panel {
+  background: var(--pm-panel) !important;
+  border: 1px solid var(--pm-border) !important;
+  color: var(--pm-text) !important;
 }
 
 @media (max-width: 980px) {
   .status-strip,
   .decision-grid {
     grid-template-columns: 1fr;
+  }
+
+  .gradio-container {
+    padding: 12px !important;
   }
 }
 """
@@ -259,7 +393,7 @@ EXAMPLE_PAYLOADS = load_example_payloads()
 
 
 def build_header_html() -> str:
-    vector_status = "Ready" if is_vectorstore_ready(VECTORSTORE_DIR) else "Missing"
+    vector_status = "Ready" if is_vectorstore_ready(VECTORSTORE_DIR) else "Auto-build on run"
     api_status = "Configured" if OPENAI_API_KEY else "Missing"
     return f"""
     <div class="app-header">
@@ -572,12 +706,19 @@ def run_console(
 
 
 def build_demo() -> gr.Blocks:
-    with gr.Blocks(css=CSS, title="PurpleMerit Ops Console", fill_width=True) as demo:
+    theme = gr.themes.Base(
+        primary_hue="teal",
+        neutral_hue="slate",
+        font=["IBM Plex Sans", "Arial", "sans-serif"],
+        font_mono=["IBM Plex Mono", "Consolas", "monospace"],
+    )
+
+    with gr.Blocks(css=CSS, theme=theme, title="PurpleMerit Ops Console", fill_width=True) as demo:
         gr.HTML(build_header_html())
 
         with gr.Row(equal_height=False):
             with gr.Column(scale=5):
-                with gr.Group(elem_classes=["panel"]):
+                with gr.Group(elem_id="intake-panel", elem_classes=["panel"]):
                     gr.HTML('<h2 class="panel-heading">Ticket Intake</h2>')
                     gr.HTML('<div class="section-note">Load a bundled example, work from the guided form, or paste a raw JSON payload.</div>')
 
@@ -617,21 +758,22 @@ def build_demo() -> gr.Blocks:
                         reset_button = gr.Button("Reset", elem_classes=["secondary-button"])
 
             with gr.Column(scale=7):
-                status_html = gr.HTML(empty_status_html())
-                alert_html = gr.HTML(build_alert_html("Load an example or enter a ticket to begin.", level="warning"))
+                with gr.Group(elem_id="result-panel", elem_classes=["panel"]):
+                    status_html = gr.HTML(empty_status_html())
+                    alert_html = gr.HTML(build_alert_html("Load an example or enter a ticket to begin.", level="warning"))
 
-                with gr.Tabs():
-                    with gr.Tab("Decision"):
-                        decision_html = gr.HTML(empty_decision_html())
-                    with gr.Tab("Customer Draft"):
-                        customer_draft = gr.Textbox(label="Customer Response Draft", lines=18, interactive=False)
-                    with gr.Tab("Policy Evidence"):
-                        evidence_html = gr.HTML(empty_evidence_html())
-                    with gr.Tab("Compliance"):
-                        compliance_html = gr.HTML(empty_compliance_html())
+                    with gr.Tabs():
+                        with gr.Tab("Decision"):
+                            decision_html = gr.HTML(empty_decision_html())
+                        with gr.Tab("Customer Draft"):
+                            customer_draft = gr.Textbox(label="Customer Response Draft", lines=18, interactive=False)
+                        with gr.Tab("Policy Evidence"):
+                            evidence_html = gr.HTML(empty_evidence_html())
+                        with gr.Tab("Compliance"):
+                            compliance_html = gr.HTML(empty_compliance_html())
 
-                with gr.Accordion("Raw Run Output", open=False):
-                    raw_output_text = gr.Textbox(label="Normalized Result JSON", lines=22, interactive=False, elem_classes=["mono"])
+                    with gr.Accordion("Raw Run Output", open=False):
+                        raw_output_text = gr.Textbox(label="Normalized Result JSON", lines=22, interactive=False, elem_classes=["mono"])
 
         example_outputs = [
             ticket_text,

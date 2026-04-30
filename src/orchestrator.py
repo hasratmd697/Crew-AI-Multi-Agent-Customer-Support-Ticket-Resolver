@@ -9,6 +9,7 @@ from src.agents.policy_retriever_agent import create_policy_retriever_agent
 from src.agents.resolution_writer_agent import create_resolution_writer_agent
 from src.agents.triage_agent import create_triage_agent
 from src.config import OPENAI_API_KEY, OPENAI_MODEL_NAME, VECTORSTORE_DIR
+from src.ingestion.embedder import build_vectorstore
 from src.prompts.agent_prompts import (
     COMPLIANCE_TASK_PROMPT,
     ORDER_CONTEXT_TASK_PROMPT,
@@ -24,6 +25,20 @@ from src.ui_adapter import (
     validate_ticket_payload,
 )
 from src.utils.pii_redactor import PIIRedactor
+
+
+def ensure_vectorstore_available(progress_callback=None) -> bool:
+    """
+    Builds the local Chroma store on demand when Spaces starts without persisted binaries.
+    """
+    if is_vectorstore_ready(VECTORSTORE_DIR):
+        return True
+
+    if progress_callback:
+        progress_callback(0.16, "Building policy vector store")
+
+    build_vectorstore(force_rebuild=True)
+    return is_vectorstore_ready(VECTORSTORE_DIR)
 
 
 def build_support_crew(ticket_text: str, order_context: str) -> Crew:
@@ -155,13 +170,6 @@ def run_ticket_resolution_ui(ticket_payload: dict, max_retries: int = 2, progres
             raw_output={"input": ticket_payload},
         )
 
-    if not is_vectorstore_ready(VECTORSTORE_DIR):
-        return UiRunResult.from_error(
-            "Vector store not ready",
-            "The local Chroma vector store was not found. Run `python ingest.py` to build `data/vectorstore/` before launching the app.",
-            raw_output={"input": ticket_payload, "vectorstore_dir": str(VECTORSTORE_DIR)},
-        )
-
     ticket_text = json.dumps(ticket_payload.get("ticket", {}), ensure_ascii=False)
     order_context = json.dumps(ticket_payload.get("order_context", {}), ensure_ascii=False)
     safe_ticket_text = PIIRedactor.redact(ticket_text)
@@ -170,6 +178,14 @@ def run_ticket_resolution_ui(ticket_payload: dict, max_retries: int = 2, progres
     try:
         if progress_callback:
             progress_callback(0.1, "Preparing agent workflow")
+
+        if not ensure_vectorstore_available(progress_callback):
+            return UiRunResult.from_error(
+                "Vector store not ready",
+                "The policy vector store could not be built from `data/policies/`.",
+                raw_output={"input": ticket_payload, "vectorstore_dir": str(VECTORSTORE_DIR)},
+            )
+
         result = None
         stage_outputs = None
 
