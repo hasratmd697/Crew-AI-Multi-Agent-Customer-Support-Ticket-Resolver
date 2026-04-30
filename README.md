@@ -2,7 +2,7 @@
 title: PurpleMerit Ops Console
 sdk: gradio
 app_file: app.py
-python_version: 3.10
+python_version: "3.10"
 ---
 
 # E-commerce Support Resolution Agent
