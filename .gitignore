@@ -4,3 +4,13 @@ generate_policies.py
 ingest.py
 writeup.md
 PROJECT_PLAN.md
+
+# Binary vectorstore files - Hugging Face doesn't allow large binaries
+data/vectorstore/*.sqlite3
+data/vectorstore/*.bin
+data/vectorstore/*/
+
+# Virtual environment and cache
+venv/
+__pycache__/
+*.pyc
